@@ -6,7 +6,7 @@ control system.
 
 ---
 
-## Join the Workshop WhatsApp Group
+## Join the Workshop WhatsApp Group - Community Maintained
 
 <p align="center">
   <a href="https://chat.whatsapp.com/GDMHZ3MlXunLEsWuaagXEY?mode=gi_t">
