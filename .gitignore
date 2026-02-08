@@ -1,0 +1,31 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# AI / ML model files (large, download separately)
+*.task
+*.dat
+*.dat.bz2
+*.tflite
+*.onnx
+*.pt
+*.pth
+
+# ROS2 workspace build artifacts
+ros2_my_own_ws/build/
+ros2_my_own_ws/install/
+ros2_my_own_ws/log/
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
