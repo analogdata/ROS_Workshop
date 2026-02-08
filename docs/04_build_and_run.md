@@ -5,7 +5,7 @@
 Before you start, make sure you have:
 - **Python 3.13+** installed
 - **uv** (Python package manager) installed
-- **ROS2** (Humble or later) installed and sourced
+- **ROS2 Jazzy** installed and sourced
 - **Arduino IDE** with ESP8266 board support
 - **ESP8266** (NodeMCU) microcontroller
 - **Webcam** (for camera/finger/drowsiness programs)

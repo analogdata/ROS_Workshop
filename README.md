@@ -1,7 +1,8 @@
 # ROS Workshop — ESP8266 LED Control via UDP
 
 Control an LED on an ESP8266 microcontroller using UDP — from simple text commands
-to AI-powered hand gestures and drowsiness detection, plus a ROS2 bridge node.
+to AI-powered hand gestures, drowsiness detection, and a multi-node ROS2 keyboard
+control system.
 
 ---
 
@@ -18,17 +19,25 @@ ROS_Workshop/
 │   ├── hand_landmarker.task             # [DOWNLOAD] MediaPipe hand model
 │   └── shape_predictor_68_face_landmarks.dat  # [DOWNLOAD] dlib face model
 │
-├── ros2_my_own_ws/                      # ROS2 Workspace
+├── ros2_my_own_ws/                      # ROS2 Workspace (single-node bridge)
 │   └── src/udp_led_bridge/              # ROS2 package: UDP LED bridge
 │       └── udp_led_bridge/
 │           └── udp_sender_node.py       # ROS2 node: topic → UDP → ESP8266
+│
+├── ros2_keyboar_led_control/            # ROS2 Workspace (3-node keyboard system)
+│   └── src/keyboard_node/              # ROS2 package: keyboard LED control
+│       └── keyboard_node/
+│           ├── keyboard_input_node.py   # Node 1: reads keystrokes (a/b/q)
+│           ├── udp_sender_node.py       # Node 2: sends UDP to ESP8266
+│           └── status_display_node.py   # Node 3: displays LED status
 │
 ├── docs/                                # Step-by-step documentation
 │   ├── 01_what_is_udp.md               # UDP explained simply
 │   ├── 02_what_is_ros2.md              # ROS2 concepts for beginners
 │   ├── 03_project_overview.md          # Project structure & how things connect
 │   ├── 04_build_and_run.md             # Full build & run instructions
-│   └── 05_how_each_program_works.md    # Deep dive into each program
+│   ├── 05_how_each_program_works.md    # Deep dive into each program
+│   └── 06_keyboard_led_control.md      # 3-node keyboard system guide
 │
 ├── pyproject.toml                       # Python dependencies (managed by uv)
 └── README.md                            # You are here!
@@ -82,7 +91,7 @@ uv run python p7/finger_udp.py
 uv run python p7/drowsiness_udp.py
 ```
 
-### 5. Run the ROS2 Node
+### 5. Run the ROS2 Single-Node Bridge
 
 ```bash
 cd ros2_my_own_ws
@@ -97,6 +106,32 @@ ros2 topic pub --once /led_command std_msgs/String "data: 'on'"
 ros2 topic pub --once /led_command std_msgs/String "data: 'off'"
 ```
 
+### 6. Run the ROS2 Keyboard Control (3 Nodes)
+
+```bash
+cd ros2_keyboar_led_control
+colcon build --packages-select keyboard_node
+source install/setup.bash
+```
+
+Open **3 terminals** (run `cd ~/ROS_Workshop/ros2_keyboar_led_control && source install/setup.bash` in each):
+
+```bash
+# Terminal 1 — Status display
+ros2 run keyboard_node status_display_node
+
+# Terminal 2 — UDP sender
+ros2 run keyboard_node udp_sender_node
+
+# Terminal 3 — Keyboard input (press a=ON, b=OFF, q=Quit)
+ros2 run keyboard_node keyboard_input_node
+```
+
+To use a different ESP IP:
+```bash
+ros2 run keyboard_node udp_sender_node --ros-args -p esp_ip:="192.168.1.50"
+```
+
 ---
 
 ## Programs Overview
@@ -108,7 +143,10 @@ ros2 topic pub --once /led_command std_msgs/String "data: 'off'"
 | `p7/camera_test.py` | Camera | Test webcam with OpenCV |
 | `p7/finger_udp.py` | AI (MediaPipe) | Count fingers → control LED |
 | `p7/drowsiness_udp.py` | AI (dlib) | Detect drowsiness → alert LED |
-| `udp_sender_node.py` | ROS2 | Bridge ROS2 topic → UDP → ESP8266 |
+| `udp_sender_node.py` (udp_led_bridge) | ROS2 | Bridge ROS2 topic → UDP → ESP8266 |
+| `keyboard_input_node.py` | ROS2 | Read keystrokes (a/b/q), publish commands |
+| `udp_sender_node.py` (keyboard_node) | ROS2 | Forward commands via UDP, publish status |
+| `status_display_node.py` | ROS2 | Display LED status updates in terminal |
 
 ---
 
@@ -123,7 +161,9 @@ ros2 topic pub --once /led_command std_msgs/String "data: 'off'"
 
 ## Dependencies
 
-Managed via `pyproject.toml` with [uv](https://docs.astral.sh/uv/):
+**ROS2 Jazzy** is required for the ROS2 workspaces (`ros2_my_own_ws` and `ros2_keyboar_led_control`).
+
+Python packages managed via `pyproject.toml` with [uv](https://docs.astral.sh/uv/):
 
 - **opencv-python** / **opencv-contrib-python** — Camera and image processing
 - **mediapipe** — Google's hand landmark detection
@@ -142,6 +182,7 @@ See the `docs/` folder for beginner-friendly explanations:
 3. **[Project Overview](docs/03_project_overview.md)** — How everything connects
 4. **[Build & Run](docs/04_build_and_run.md)** — Step-by-step instructions + troubleshooting
 5. **[How Each Program Works](docs/05_how_each_program_works.md)** — Deep dive with flowcharts
+6. **[Keyboard LED Control](docs/06_keyboard_led_control.md)** — 3-node ROS2 system guide
 
 ---
 
