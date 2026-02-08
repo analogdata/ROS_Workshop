@@ -6,6 +6,20 @@ control system.
 
 ---
 
+## Join the Workshop WhatsApp Group
+
+<p align="center">
+  <a href="https://chat.whatsapp.com/GDMHZ3MlXunLEsWuaagXEY?mode=gi_t">
+    <img src="docs/Whatsapp QR for Group/IISc-ROS.jpeg" alt="WhatsApp Group QR" width="250"/>
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://chat.whatsapp.com/GDMHZ3MlXunLEsWuaagXEY?mode=gi_t">👉 Click here to join the WhatsApp Group</a>
+</p>
+
+---
+
 ## Project Structure
 
 ```
@@ -32,12 +46,14 @@ ROS_Workshop/
 │           └── status_display_node.py   # Node 3: displays LED status
 │
 ├── docs/                                # Step-by-step documentation
+│   ├── 00_installation_and_get_started.md  # Installation guide (Git, ROS2, Arduino, etc.)
 │   ├── 01_what_is_udp.md               # UDP explained simply
 │   ├── 02_what_is_ros2.md              # ROS2 concepts for beginners
 │   ├── 03_project_overview.md          # Project structure & how things connect
 │   ├── 04_build_and_run.md             # Full build & run instructions
 │   ├── 05_how_each_program_works.md    # Deep dive into each program
-│   └── 06_keyboard_led_control.md      # 3-node keyboard system guide
+│   ├── 06_keyboard_led_control.md      # 3-node keyboard system guide
+│   └── Whatsapp QR for Group/          # WhatsApp group QR code image
 │
 ├── pyproject.toml                       # Python dependencies (managed by uv)
 └── README.md                            # You are here!
@@ -177,6 +193,7 @@ Python packages managed via `pyproject.toml` with [uv](https://docs.astral.sh/uv
 
 See the `docs/` folder for beginner-friendly explanations:
 
+0. **[Installation & Getting Started](docs/00_installation_and_get_started.md)** — Git, ROS2 Jazzy, Arduino, uv, Docker, Webots, etc.
 1. **[What is UDP?](docs/01_what_is_udp.md)** — UDP vs TCP, sockets, ports
 2. **[What is ROS2?](docs/02_what_is_ros2.md)** — Nodes, Topics, Messages, Parameters
 3. **[Project Overview](docs/03_project_overview.md)** — How everything connects
