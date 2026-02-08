@@ -1,0 +1,6 @@
+source;share/udp_led_bridge/hook/pythonpath.ps1
+source;share/udp_led_bridge/hook/pythonpath.dsv
+source;share/udp_led_bridge/hook/pythonpath.sh
+source;share/udp_led_bridge/hook/ament_prefix_path.ps1
+source;share/udp_led_bridge/hook/ament_prefix_path.dsv
+source;share/udp_led_bridge/hook/ament_prefix_path.sh

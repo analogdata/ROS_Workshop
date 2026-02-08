@@ -1,0 +1,43 @@
+running egg_info
+creating ../../build/keyboard_node/keyboard_node.egg-info
+writing ../../build/keyboard_node/keyboard_node.egg-info/PKG-INFO
+writing dependency_links to ../../build/keyboard_node/keyboard_node.egg-info/dependency_links.txt
+writing entry points to ../../build/keyboard_node/keyboard_node.egg-info/entry_points.txt
+writing requirements to ../../build/keyboard_node/keyboard_node.egg-info/requires.txt
+writing top-level names to ../../build/keyboard_node/keyboard_node.egg-info/top_level.txt
+writing manifest file '../../build/keyboard_node/keyboard_node.egg-info/SOURCES.txt'
+reading manifest file '../../build/keyboard_node/keyboard_node.egg-info/SOURCES.txt'
+writing manifest file '../../build/keyboard_node/keyboard_node.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/rajath/ROS_Workshop/ros2_keyboar_led_control/build/keyboard_node/build
+creating /home/rajath/ROS_Workshop/ros2_keyboar_led_control/build/keyboard_node/build/lib
+creating /home/rajath/ROS_Workshop/ros2_keyboar_led_control/build/keyboard_node/build/lib/keyboard_node
+copying keyboard_node/__init__.py -> /home/rajath/ROS_Workshop/ros2_keyboar_led_control/build/keyboard_node/build/lib/keyboard_node
+copying keyboard_node/status_display_node.py -> /home/rajath/ROS_Workshop/ros2_keyboar_led_control/build/keyboard_node/build/lib/keyboard_node
+copying keyboard_node/udp_sender_node.py -> /home/rajath/ROS_Workshop/ros2_keyboar_led_control/build/keyboard_node/build/lib/keyboard_node
+copying keyboard_node/keyboard_input_node.py -> /home/rajath/ROS_Workshop/ros2_keyboar_led_control/build/keyboard_node/build/lib/keyboard_node
+running install
+running install_lib
+creating /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/lib/python3.12/site-packages/keyboard_node
+copying /home/rajath/ROS_Workshop/ros2_keyboar_led_control/build/keyboard_node/build/lib/keyboard_node/__init__.py -> /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/lib/python3.12/site-packages/keyboard_node
+copying /home/rajath/ROS_Workshop/ros2_keyboar_led_control/build/keyboard_node/build/lib/keyboard_node/status_display_node.py -> /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/lib/python3.12/site-packages/keyboard_node
+copying /home/rajath/ROS_Workshop/ros2_keyboar_led_control/build/keyboard_node/build/lib/keyboard_node/udp_sender_node.py -> /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/lib/python3.12/site-packages/keyboard_node
+copying /home/rajath/ROS_Workshop/ros2_keyboar_led_control/build/keyboard_node/build/lib/keyboard_node/keyboard_input_node.py -> /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/lib/python3.12/site-packages/keyboard_node
+byte-compiling /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/lib/python3.12/site-packages/keyboard_node/__init__.py to __init__.cpython-312.pyc
+byte-compiling /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/lib/python3.12/site-packages/keyboard_node/status_display_node.py to status_display_node.cpython-312.pyc
+byte-compiling /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/lib/python3.12/site-packages/keyboard_node/udp_sender_node.py to udp_sender_node.cpython-312.pyc
+byte-compiling /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/lib/python3.12/site-packages/keyboard_node/keyboard_input_node.py to keyboard_input_node.cpython-312.pyc
+running install_data
+creating /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/share/ament_index
+creating /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/share/ament_index/resource_index
+creating /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/share/ament_index/resource_index/packages
+copying resource/keyboard_node -> /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/share/ament_index/resource_index/packages
+copying package.xml -> /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/share/keyboard_node
+running install_egg_info
+Copying ../../build/keyboard_node/keyboard_node.egg-info to /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/lib/python3.12/site-packages/keyboard_node-0.0.0-py3.12.egg-info
+running install_scripts
+Installing keyboard_input_node script to /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/lib/keyboard_node
+Installing status_display_node script to /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/lib/keyboard_node
+Installing udp_sender_node script to /home/rajath/ROS_Workshop/ros2_keyboar_led_control/install/keyboard_node/lib/keyboard_node
+writing list of installed files to '/home/rajath/ROS_Workshop/ros2_keyboar_led_control/build/keyboard_node/install.log'

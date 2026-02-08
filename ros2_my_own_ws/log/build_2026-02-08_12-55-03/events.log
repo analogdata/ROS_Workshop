@@ -1,0 +1,92 @@
+[0.000000] (-) TimerEvent: {}
+[0.000794] (udp_led_bridge) JobQueued: {'identifier': 'udp_led_bridge', 'dependencies': OrderedDict()}
+[0.001617] (udp_led_bridge) JobStarted: {'identifier': 'udp_led_bridge'}
+[0.099546] (-) TimerEvent: {}
+[0.200026] (-) TimerEvent: {}
+[0.303400] (-) TimerEvent: {}
+[0.404442] (-) TimerEvent: {}
+[0.505189] (-) TimerEvent: {}
+[0.605567] (-) TimerEvent: {}
+[0.706265] (-) TimerEvent: {}
+[0.813470] (-) TimerEvent: {}
+[0.913838] (-) TimerEvent: {}
+[1.016213] (-) TimerEvent: {}
+[1.116632] (-) TimerEvent: {}
+[1.217280] (-) TimerEvent: {}
+[1.322565] (-) TimerEvent: {}
+[1.423391] (-) TimerEvent: {}
+[1.525570] (-) TimerEvent: {}
+[1.625967] (-) TimerEvent: {}
+[1.727354] (-) TimerEvent: {}
+[1.828338] (-) TimerEvent: {}
+[1.928900] (-) TimerEvent: {}
+[2.029710] (-) TimerEvent: {}
+[2.130089] (-) TimerEvent: {}
+[2.230582] (-) TimerEvent: {}
+[2.330995] (-) TimerEvent: {}
+[2.431542] (-) TimerEvent: {}
+[2.532143] (-) TimerEvent: {}
+[2.633212] (-) TimerEvent: {}
+[2.735345] (-) TimerEvent: {}
+[2.838539] (-) TimerEvent: {}
+[2.939029] (-) TimerEvent: {}
+[3.039457] (-) TimerEvent: {}
+[3.139910] (-) TimerEvent: {}
+[3.172563] (udp_led_bridge) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/udp_led_bridge', 'build', '--build-base', '/home/rajath/ROS_Workshop/ros2_my_own_ws/build/udp_led_bridge/build', 'install', '--record', '/home/rajath/ROS_Workshop/ros2_my_own_ws/build/udp_led_bridge/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/rajath/ROS_Workshop/ros2_my_own_ws/src/udp_led_bridge', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'HISTFILESIZE': '2000', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'WARP_HONOR_PS1': '0', 'USER': 'rajath', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SESSION_TYPE': 'wayland', 'CLUTTER_DISABLE_MIPMAPPED_TEXT': '1', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/rajath', 'OLDPWD': '/home/rajath/ROS_Workshop/ros2_my_own_ws/src', 'TERM_PROGRAM_VERSION': 'v0.2026.02.04.08.20.stable_02', 'DESKTOP_SESSION': 'ubuntu', 'WARP_USE_SSH_WRAPPER': '1', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/dev.warp.Warp.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '2951', 'SYSTEMD_EXEC_PID': '3208', 'IM_CONFIG_CHECK_ENV': '1', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '5259', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'rajath', 'JOURNAL_STREAM': '9:19896', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@wayland.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'rajath', 'SSH_SOCKET_DIR': '~/.ssh', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'WARP_IS_LOCAL_SHELL_SESSION': '1', 'PATH': '/home/rajath/.local/bin:/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/home/rajath/.local/bin:/home/rajath/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/analogdata-ubuntu:@/tmp/.ICE-unix/3172,unix/analogdata-ubuntu:/tmp/.ICE-unix/3172', 'INVOCATION_ID': 'a99f496f019e4e7e9e1d47be9e34400f', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'WARP_PATH_APPEND': '', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.545IK3', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'TERM_PROGRAM': 'WarpTerminal', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GJS_DEBUG_OUTPUT': 'stderr', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/rajath/ROS_Workshop/ros2_my_own_ws/build/udp_led_bridge', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'QTWEBENGINE_DICTIONARIES_PATH': '/usr/share/hunspell-bdic/', 'PYTHONPATH': '/home/rajath/ROS_Workshop/ros2_my_own_ws/build/udp_led_bridge/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/rajath/ROS_Workshop/ros2_my_own_ws/install/udp_led_bridge/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor'}, 'shell': False}
+[3.240577] (-) TimerEvent: {}
+[3.341011] (-) TimerEvent: {}
+[3.442944] (-) TimerEvent: {}
+[3.543458] (-) TimerEvent: {}
+[3.643985] (-) TimerEvent: {}
+[3.744457] (-) TimerEvent: {}
+[3.847360] (-) TimerEvent: {}
+[3.947715] (-) TimerEvent: {}
+[4.048047] (-) TimerEvent: {}
+[4.149332] (-) TimerEvent: {}
+[4.202886] (udp_led_bridge) StdoutLine: {'line': b'running egg_info\n'}
+[4.204114] (udp_led_bridge) StdoutLine: {'line': b'creating ../../build/udp_led_bridge/udp_led_bridge.egg-info\n'}
+[4.249463] (-) TimerEvent: {}
+[4.254027] (udp_led_bridge) StdoutLine: {'line': b'writing ../../build/udp_led_bridge/udp_led_bridge.egg-info/PKG-INFO\n'}
+[4.255372] (udp_led_bridge) StdoutLine: {'line': b'writing dependency_links to ../../build/udp_led_bridge/udp_led_bridge.egg-info/dependency_links.txt\n'}
+[4.256322] (udp_led_bridge) StdoutLine: {'line': b'writing entry points to ../../build/udp_led_bridge/udp_led_bridge.egg-info/entry_points.txt\n'}
+[4.256741] (udp_led_bridge) StdoutLine: {'line': b'writing requirements to ../../build/udp_led_bridge/udp_led_bridge.egg-info/requires.txt\n'}
+[4.258794] (udp_led_bridge) StdoutLine: {'line': b'writing top-level names to ../../build/udp_led_bridge/udp_led_bridge.egg-info/top_level.txt\n'}
+[4.261645] (udp_led_bridge) StdoutLine: {'line': b"writing manifest file '../../build/udp_led_bridge/udp_led_bridge.egg-info/SOURCES.txt'\n"}
+[4.349572] (-) TimerEvent: {}
+[4.398260] (udp_led_bridge) StdoutLine: {'line': b"reading manifest file '../../build/udp_led_bridge/udp_led_bridge.egg-info/SOURCES.txt'\n"}
+[4.402372] (udp_led_bridge) StdoutLine: {'line': b"writing manifest file '../../build/udp_led_bridge/udp_led_bridge.egg-info/SOURCES.txt'\n"}
+[4.403616] (udp_led_bridge) StdoutLine: {'line': b'running build\n'}
+[4.404499] (udp_led_bridge) StdoutLine: {'line': b'running build_py\n'}
+[4.406378] (udp_led_bridge) StdoutLine: {'line': b'creating /home/rajath/ROS_Workshop/ros2_my_own_ws/build/udp_led_bridge/build\n'}
+[4.406712] (udp_led_bridge) StdoutLine: {'line': b'creating /home/rajath/ROS_Workshop/ros2_my_own_ws/build/udp_led_bridge/build/lib\n'}
+[4.406908] (udp_led_bridge) StdoutLine: {'line': b'creating /home/rajath/ROS_Workshop/ros2_my_own_ws/build/udp_led_bridge/build/lib/udp_led_bridge\n'}
+[4.407111] (udp_led_bridge) StdoutLine: {'line': b'copying udp_led_bridge/__init__.py -> /home/rajath/ROS_Workshop/ros2_my_own_ws/build/udp_led_bridge/build/lib/udp_led_bridge\n'}
+[4.407334] (udp_led_bridge) StdoutLine: {'line': b'copying udp_led_bridge/udp_sender_node.py -> /home/rajath/ROS_Workshop/ros2_my_own_ws/build/udp_led_bridge/build/lib/udp_led_bridge\n'}
+[4.407538] (udp_led_bridge) StdoutLine: {'line': b'running install\n'}
+[4.420761] (udp_led_bridge) StdoutLine: {'line': b'running install_lib\n'}
+[4.449761] (-) TimerEvent: {}
+[4.495742] (udp_led_bridge) StdoutLine: {'line': b'creating /home/rajath/ROS_Workshop/ros2_my_own_ws/install/udp_led_bridge/lib/python3.12/site-packages/udp_led_bridge\n'}
+[4.496687] (udp_led_bridge) StdoutLine: {'line': b'copying /home/rajath/ROS_Workshop/ros2_my_own_ws/build/udp_led_bridge/build/lib/udp_led_bridge/__init__.py -> /home/rajath/ROS_Workshop/ros2_my_own_ws/install/udp_led_bridge/lib/python3.12/site-packages/udp_led_bridge\n'}
+[4.497028] (udp_led_bridge) StdoutLine: {'line': b'copying /home/rajath/ROS_Workshop/ros2_my_own_ws/build/udp_led_bridge/build/lib/udp_led_bridge/udp_sender_node.py -> /home/rajath/ROS_Workshop/ros2_my_own_ws/install/udp_led_bridge/lib/python3.12/site-packages/udp_led_bridge\n'}
+[4.499161] (udp_led_bridge) StdoutLine: {'line': b'byte-compiling /home/rajath/ROS_Workshop/ros2_my_own_ws/install/udp_led_bridge/lib/python3.12/site-packages/udp_led_bridge/__init__.py to __init__.cpython-312.pyc\n'}
+[4.499725] (udp_led_bridge) StdoutLine: {'line': b'byte-compiling /home/rajath/ROS_Workshop/ros2_my_own_ws/install/udp_led_bridge/lib/python3.12/site-packages/udp_led_bridge/udp_sender_node.py to udp_sender_node.cpython-312.pyc\n'}
+[4.500419] (udp_led_bridge) StdoutLine: {'line': b'running install_data\n'}
+[4.501282] (udp_led_bridge) StdoutLine: {'line': b'creating /home/rajath/ROS_Workshop/ros2_my_own_ws/install/udp_led_bridge/share/ament_index\n'}
+[4.502295] (udp_led_bridge) StdoutLine: {'line': b'creating /home/rajath/ROS_Workshop/ros2_my_own_ws/install/udp_led_bridge/share/ament_index/resource_index\n'}
+[4.503419] (udp_led_bridge) StdoutLine: {'line': b'creating /home/rajath/ROS_Workshop/ros2_my_own_ws/install/udp_led_bridge/share/ament_index/resource_index/packages\n'}
+[4.503652] (udp_led_bridge) StdoutLine: {'line': b'copying resource/udp_led_bridge -> /home/rajath/ROS_Workshop/ros2_my_own_ws/install/udp_led_bridge/share/ament_index/resource_index/packages\n'}
+[4.503884] (udp_led_bridge) StdoutLine: {'line': b'copying package.xml -> /home/rajath/ROS_Workshop/ros2_my_own_ws/install/udp_led_bridge/share/udp_led_bridge\n'}
+[4.504094] (udp_led_bridge) StdoutLine: {'line': b'running install_egg_info\n'}
+[4.549863] (-) TimerEvent: {}
+[4.569636] (udp_led_bridge) StdoutLine: {'line': b'Copying ../../build/udp_led_bridge/udp_led_bridge.egg-info to /home/rajath/ROS_Workshop/ros2_my_own_ws/install/udp_led_bridge/lib/python3.12/site-packages/udp_led_bridge-0.0.0-py3.12.egg-info\n'}
+[4.573590] (udp_led_bridge) StdoutLine: {'line': b'running install_scripts\n'}
+[4.650007] (-) TimerEvent: {}
+[4.754472] (-) TimerEvent: {}
+[4.855641] (-) TimerEvent: {}
+[4.957244] (-) TimerEvent: {}
+[5.001820] (udp_led_bridge) StdoutLine: {'line': b'Installing udp_sender_node script to /home/rajath/ROS_Workshop/ros2_my_own_ws/install/udp_led_bridge/lib/udp_led_bridge\n'}
+[5.002932] (udp_led_bridge) StdoutLine: {'line': b"writing list of installed files to '/home/rajath/ROS_Workshop/ros2_my_own_ws/build/udp_led_bridge/install.log'\n"}
+[5.057383] (-) TimerEvent: {}
+[5.100568] (udp_led_bridge) CommandEnded: {'returncode': 0}
+[5.144029] (udp_led_bridge) JobEnded: {'identifier': 'udp_led_bridge', 'rc': 0}
+[5.145953] (-) EventReactorShutdown: {}

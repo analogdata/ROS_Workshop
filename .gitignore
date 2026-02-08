@@ -17,14 +17,6 @@ wheels/
 *.pt
 *.pth
 
-# ROS2 workspace build artifacts
-ros2_my_own_ws/build/
-ros2_my_own_ws/install/
-ros2_my_own_ws/log/
-ros2_keyboar_led_control/build/
-ros2_keyboar_led_control/install/
-ros2_keyboar_led_control/log/
-
 # IDE
 .vscode/
 .idea/
