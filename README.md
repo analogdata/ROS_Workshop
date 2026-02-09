@@ -10,7 +10,7 @@ control system.
 
 <p align="center">
   <a href="https://chat.whatsapp.com/GDMHZ3MlXunLEsWuaagXEY?mode=gi_t">
-    <img src="docs/Whatsapp QR for Group/IISc-ROS.jpeg" alt="WhatsApp Group QR" width="250"/>
+    <img src="docs/Whatsapp%20QR%20for%20Group/IISc-ROS.png" alt="WhatsApp Group QR" width="250"/>
   </a>
 </p>
 
