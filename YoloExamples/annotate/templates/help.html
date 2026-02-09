@@ -1,0 +1,229 @@
+{% set active_page = "help" %}
+{% extends "base.html" %}
+{% block title %}Usage / Help{% endblock %}
+
+{% block body %}
+<div class="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+
+  <!-- Header -->
+  <a href="/" class="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-amber-600 transition-colors duration-300 mb-6">
+    <i class="fa-solid fa-arrow-left text-xs"></i> Back to Home
+  </a>
+  <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-2">
+    Usage <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-400 to-amber-300">/</span> Help
+  </h1>
+  <p class="text-lg text-slate-600 font-light mb-12">Everything you need to know about annotating images for YOLO training.</p>
+
+  <!-- Quick Start -->
+  <section class="mb-14">
+    <h2 class="text-xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
+      <i class="fa-solid fa-rocket text-amber-500 mr-2"></i>Quick Start
+    </h2>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white rounded-xl border border-slate-100 shadow-sm p-5 text-center">
+        <div class="w-9 h-9 mx-auto mb-2 rounded-full flex items-center justify-center text-sm font-bold text-black" style="background:linear-gradient(to right,#f59e0b,#fb923c,#fcd34d);">1</div>
+        <h4 class="text-sm font-semibold text-slate-900 mb-1">Start</h4>
+        <p class="text-xs text-slate-500 font-light">Run the command below</p>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-100 shadow-sm p-5 text-center">
+        <div class="w-9 h-9 mx-auto mb-2 rounded-full flex items-center justify-center text-sm font-bold text-black" style="background:linear-gradient(to right,#f59e0b,#fb923c,#fcd34d);">2</div>
+        <h4 class="text-sm font-semibold text-slate-900 mb-1">Load</h4>
+        <p class="text-xs text-slate-500 font-light">Browse folder or upload</p>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-100 shadow-sm p-5 text-center">
+        <div class="w-9 h-9 mx-auto mb-2 rounded-full flex items-center justify-center text-sm font-bold text-black" style="background:linear-gradient(to right,#f59e0b,#fb923c,#fcd34d);">3</div>
+        <h4 class="text-sm font-semibold text-slate-900 mb-1">Classes</h4>
+        <p class="text-xs text-slate-500 font-light">Define object types</p>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-100 shadow-sm p-5 text-center">
+        <div class="w-9 h-9 mx-auto mb-2 rounded-full flex items-center justify-center text-sm font-bold text-black" style="background:linear-gradient(to right,#f59e0b,#fb923c,#fcd34d);">4</div>
+        <h4 class="text-sm font-semibold text-slate-900 mb-1">Annotate</h4>
+        <p class="text-xs text-slate-500 font-light">Draw bounding boxes</p>
+      </div>
+    </div>
+    <div class="bg-slate-900 text-amber-400 rounded-xl px-5 py-3 font-mono text-sm border border-slate-800">
+      uv run python YoloExamples/annotate/app.py
+    </div>
+    <p class="text-sm text-slate-500 mt-2">Then open <strong class="text-slate-700">http://localhost:5000</strong> in your browser. No flags needed.</p>
+  </section>
+
+  <!-- Loading Images -->
+  <section class="mb-14">
+    <h2 class="text-xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
+      <i class="fa-solid fa-folder-open text-amber-500 mr-2"></i>Loading Images
+    </h2>
+    <div class="space-y-4">
+      <div class="bg-white rounded-xl border border-slate-100 shadow-sm p-6">
+        <h3 class="text-sm font-bold text-amber-700 mb-2"><i class="fa-solid fa-folder mr-1.5"></i> Option A: Select Folder</h3>
+        <ul class="text-sm text-slate-600 space-y-1.5 list-disc list-inside">
+          <li>Click <strong>"Select Folder"</strong> on the home page</li>
+          <li>Navigate the folder browser or <strong>paste the full path</strong></li>
+          <li>The tool shows how many images it found</li>
+          <li>Click <strong>"Start Annotating"</strong> when ready</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-100 shadow-sm p-6">
+        <h3 class="text-sm font-bold text-amber-700 mb-2"><i class="fa-solid fa-cloud-arrow-up mr-1.5"></i> Option B: Upload Images</h3>
+        <ul class="text-sm text-slate-600 space-y-1.5 list-disc list-inside">
+          <li>Click <strong>"Upload Images"</strong> on the home page</li>
+          <li>Name your project and drag &amp; drop images</li>
+          <li>Images are saved locally in <code class="text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded text-xs">YoloExamples/annotate/_uploads/</code></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-4 bg-amber-50 border border-amber-200 rounded-xl px-5 py-3 text-sm text-amber-800">
+      <strong>Tip:</strong> If you already have a YOLO dataset (<code class="text-amber-700">train/images/</code> + <code class="text-amber-700">train/labels/</code>), point the browser to the <code class="text-amber-700">images/</code> folder. Existing labels load automatically.
+    </div>
+  </section>
+
+  <!-- Managing Classes -->
+  <section class="mb-14">
+    <h2 class="text-xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
+      <i class="fa-solid fa-tags text-amber-500 mr-2"></i>Managing Classes
+    </h2>
+    <p class="text-sm text-slate-600 mb-3">Classes define what objects you're labeling. You can manage them in two places:</p>
+    <ul class="text-sm text-slate-600 space-y-1.5 list-disc list-inside mb-4">
+      <li><strong>Home page modals</strong> — Add classes before you start</li>
+      <li><strong>Annotation sidebar</strong> — Add new classes on-the-fly</li>
+    </ul>
+    <p class="text-sm text-slate-600 mb-2">Metadata is saved per labels folder:</p>
+    <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
+      <li><code class="text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded text-xs">annotation_meta.json</code> — Classes, creation date</li>
+      <li><code class="text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded text-xs">classes.txt</code> — Plain text for YOLO compatibility</li>
+    </ul>
+    <div class="mt-4 bg-amber-50 border border-amber-200 rounded-xl px-5 py-3 text-sm text-amber-800">
+      <strong>Tip:</strong> Class order matters! Class 0 = first class, class 1 = second, etc. This maps directly to the YOLO label format.
+    </div>
+  </section>
+
+  <!-- Drawing Boxes -->
+  <section class="mb-14">
+    <h2 class="text-xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
+      <i class="fa-solid fa-pen text-amber-500 mr-2"></i>Drawing Bounding Boxes
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="bg-white rounded-xl border border-slate-100 shadow-sm p-6">
+        <h3 class="text-sm font-bold text-slate-900 mb-2">Drawing</h3>
+        <ul class="text-sm text-slate-600 space-y-1.5 list-disc list-inside">
+          <li>Select a class from the sidebar (or press <strong>1-9</strong>)</li>
+          <li><strong>Click and drag</strong> on the image</li>
+          <li>A dashed preview shows while drawing</li>
+          <li>Release to confirm the box</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-100 shadow-sm p-6">
+        <h3 class="text-sm font-bold text-slate-900 mb-2">Deleting</h3>
+        <ul class="text-sm text-slate-600 space-y-1.5 list-disc list-inside">
+          <li><strong>Right-click</strong> to delete nearest box</li>
+          <li>Click <strong><i class="fa-solid fa-xmark text-[10px]"></i></strong> in the box list</li>
+          <li>Press <strong>Z</strong> to undo last box</li>
+          <li>Click <strong>Clear</strong> to remove all</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Keyboard Shortcuts -->
+  <section class="mb-14">
+    <h2 class="text-xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
+      <i class="fa-solid fa-keyboard text-amber-500 mr-2"></i>Keyboard Shortcuts
+    </h2>
+    <div class="bg-white rounded-xl border border-slate-100 shadow-xl shadow-slate-900/10 overflow-hidden">
+      <table class="w-full text-sm">
+        <thead><tr class="bg-slate-50"><th class="text-left px-5 py-2.5 text-xs font-bold text-slate-400 uppercase tracking-wider">Key</th><th class="text-left px-5 py-2.5 text-xs font-bold text-slate-400 uppercase tracking-wider">Action</th></tr></thead>
+        <tbody class="divide-y divide-slate-100">
+          <tr><td class="px-5 py-2.5 font-semibold text-amber-700 font-mono">1 – 9</td><td class="px-5 py-2.5 text-slate-600">Select class by number</td></tr>
+          <tr><td class="px-5 py-2.5 font-semibold text-amber-700 font-mono">D / →</td><td class="px-5 py-2.5 text-slate-600">Next image (auto-saves)</td></tr>
+          <tr><td class="px-5 py-2.5 font-semibold text-amber-700 font-mono">A / ←</td><td class="px-5 py-2.5 text-slate-600">Previous image (auto-saves)</td></tr>
+          <tr><td class="px-5 py-2.5 font-semibold text-amber-700 font-mono">S</td><td class="px-5 py-2.5 text-slate-600">Save labels</td></tr>
+          <tr><td class="px-5 py-2.5 font-semibold text-amber-700 font-mono">Z</td><td class="px-5 py-2.5 text-slate-600">Undo last box</td></tr>
+          <tr><td class="px-5 py-2.5 font-semibold text-amber-700 font-mono">C</td><td class="px-5 py-2.5 text-slate-600">Clear all boxes</td></tr>
+          <tr><td class="px-5 py-2.5 font-semibold text-amber-700 font-mono">Right-click</td><td class="px-5 py-2.5 text-slate-600">Delete nearest box</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- YOLO Format -->
+  <section class="mb-14">
+    <h2 class="text-xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
+      <i class="fa-solid fa-ruler-combined text-amber-500 mr-2"></i>YOLO Label Format
+    </h2>
+    <p class="text-sm text-slate-600 mb-3">Each image gets a matching <code class="text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded text-xs">.txt</code> file. Each line = one object:</p>
+    <div class="bg-slate-900 text-amber-400 rounded-xl px-5 py-3 font-mono text-sm mb-3 border border-slate-800">
+      &lt;class_id&gt; &lt;center_x&gt; &lt;center_y&gt; &lt;width&gt; &lt;height&gt;
+    </div>
+    <p class="text-sm text-slate-600 mb-3">All coordinates are <strong class="text-slate-900">normalized</strong> (0.0 to 1.0) relative to image dimensions.</p>
+    <div class="bg-white rounded-xl border border-slate-100 shadow-sm p-6">
+      <h4 class="text-sm font-bold text-slate-900 mb-2">Example — Two objects</h4>
+      <div class="bg-slate-50 rounded-lg px-4 py-2.5 font-mono text-xs text-slate-700 space-y-0.5">
+        <div>0 0.4531 0.3125 0.2344 0.4167</div>
+        <div>1 0.7812 0.6250 0.1562 0.2083</div>
+      </div>
+      <p class="text-xs text-slate-400 mt-2">Line 1: class 0 (e.g., "helmet") · Line 2: class 1 (e.g., "no_helmet")</p>
+    </div>
+  </section>
+
+  <!-- Folder Structure -->
+  <section class="mb-14">
+    <h2 class="text-xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
+      <i class="fa-solid fa-sitemap text-amber-500 mr-2"></i>Folder Structure
+    </h2>
+    <p class="text-sm text-slate-600 mb-3">The tool expects and creates this standard YOLO structure:</p>
+    <div class="bg-slate-900 text-slate-300 rounded-xl px-5 py-4 font-mono text-xs leading-relaxed border border-slate-800">
+      <span class="text-amber-400">my_dataset/</span><br>
+      ├── train/<br>
+      │   ├── <span class="text-amber-400">images/</span> &nbsp;&nbsp;&nbsp;← Your training images<br>
+      │   └── <span class="text-amber-400">labels/</span> &nbsp;&nbsp;&nbsp;← Auto-created label files<br>
+      │       ├── annotation_meta.json<br>
+      │       └── classes.txt<br>
+      └── val/<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="text-amber-400">images/</span> &nbsp;&nbsp;&nbsp;← Validation images<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="text-amber-400">labels/</span> &nbsp;&nbsp;&nbsp;← Validation labels
+    </div>
+    <div class="mt-4 bg-amber-50 border border-amber-200 rounded-xl px-5 py-3 text-sm text-amber-800">
+      <strong>Tip:</strong> When you select an <code class="text-amber-700">images/</code> folder, the tool automatically creates a parallel <code class="text-amber-700">labels/</code> folder next to it.
+    </div>
+  </section>
+
+  <!-- Training -->
+  <section class="mb-14">
+    <h2 class="text-xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
+      <i class="fa-solid fa-dumbbell text-amber-500 mr-2"></i>Training After Annotation
+    </h2>
+    <p class="text-sm text-slate-600 mb-3">Once you've annotated your images, train a custom YOLO model:</p>
+    <div class="bg-slate-900 text-amber-400 rounded-xl px-5 py-3 font-mono text-xs leading-relaxed border border-slate-800">
+      <span class="text-slate-500"># Using our training script</span><br>
+      uv run python YoloExamples/train_custom_model.py \<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;--data YoloExamples/my_dataset/data.yaml \<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;--epochs 50<br><br>
+      <span class="text-slate-500"># Or using Ultralytics CLI</span><br>
+      uv run yolo train model=yolov8n.pt \<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;data=YoloExamples/my_dataset/data.yaml \<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;epochs=50 imgsz=640
+    </div>
+  </section>
+
+  <!-- Best Practices -->
+  <section class="mb-14">
+    <h2 class="text-xl font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
+      <i class="fa-solid fa-check text-amber-500 mr-2"></i>Best Practices
+    </h2>
+    <div class="bg-white rounded-xl border border-slate-100 shadow-sm p-6">
+      <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+        <li><strong class="text-slate-900">Draw tight boxes</strong> — As close to object edges as possible</li>
+        <li><strong class="text-slate-900">Label every instance</strong> — Don't skip small or partial objects</li>
+        <li><strong class="text-slate-900">Be consistent</strong> — Same class for same object type across all images</li>
+        <li><strong class="text-slate-900">Include variety</strong> — Different angles, lighting, backgrounds</li>
+        <li><strong class="text-slate-900">Add negative examples</strong> — Some images with no objects (leave unlabeled)</li>
+        <li><strong class="text-slate-900">Aim for 50+ images per class</strong> — More is better</li>
+        <li><strong class="text-slate-900">Split 80/20</strong> — 80% training, 20% validation</li>
+      </ul>
+    </div>
+    <div class="mt-4 bg-red-50 border border-red-200 rounded-xl px-5 py-3 text-sm text-red-800">
+      <strong><i class="fa-solid fa-triangle-exclamation mr-1"></i> Common Mistakes:</strong> Overlapping boxes for the same object, inconsistent class assignments, boxes that are too loose, forgetting small objects in the background.
+    </div>
+  </section>
+
+</div>
+{% endblock %}

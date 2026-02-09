@@ -542,6 +542,18 @@ wget -O p7/shape_predictor_68_face_landmarks.dat.bz2 \
 bunzip2 p7/shape_predictor_68_face_landmarks.dat.bz2
 ```
 
+### YOLOv8 Nano Model (~6 MB)
+
+Needed by `YoloExamples/object_detection.py` for real-time object detection:
+
+```bash
+cd ~/ROS_Workshop/YoloExamples
+uv run python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')"
+```
+
+> **Note:** The model also auto-downloads the first time you run
+> `object_detection.py`, but this pre-downloads it so you're ready offline.
+
 ### Verify Model Files Exist
 
 ```bash
@@ -550,6 +562,9 @@ ls -lh p7/hand_landmarker.task
 
 ls -lh p7/shape_predictor_68_face_landmarks.dat
 # Should show ~99 MB
+
+ls -lh YoloExamples/yolov8n.pt
+# Should show ~6.2 MB
 ```
 
 ---
@@ -597,6 +612,10 @@ uv run python -c "import mediapipe; print(mediapipe.__version__)"
 # dlib
 uv run python -c "import dlib; print(dlib.__version__)"
 # Expected: 19.x.x
+
+# Ultralytics (YOLO)
+uv run python -c "import ultralytics; print(ultralytics.__version__)"
+# Expected: 8.x.x
 ```
 
 ### Quick Sanity Test

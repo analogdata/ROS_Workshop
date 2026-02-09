@@ -6,9 +6,14 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "dlib>=20.0.0",
+    "jupyterlab>=4.0",
+    "matplotlib>=3.8",
     "mediapipe>=0.10.32",
     "opencv-contrib-python",
     "opencv-python>=4.13.0.92",
+    "flask>=3.0",
+    "pillow>=10.0",
     "requests>=2.32.5",
     "scipy",
+    "ultralytics>=8.4.12",
 ]

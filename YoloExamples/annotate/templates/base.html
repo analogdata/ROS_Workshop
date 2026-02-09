@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}YOLO Annotator{% endblock %} / Analog Data</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { outfit: ['Outfit', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'] },
+          colors: {
+            'tangerine-zest': '#f59e0b',
+            'mellow-orange': '#fb923c',
+            'deep-navy': '#0f172a',
+            'brand-dark': '#0b0f19',
+            'brand-light': '#f8fafc',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Outfit', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    .btn-brand {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 32px; border-radius: 12px; font-weight: 600;
+      background: linear-gradient(to right, #f59e0b, #fb923c, #fcd34d);
+      border: 1px solid black; color: black;
+      box-shadow: 0 10px 15px -3px rgba(251,191,36,0.3);
+      transition: all 0.3s; cursor: pointer;
+    }
+    .btn-brand:hover { filter: brightness(1.1); transform: scale(1.05); }
+    .pill-brand {
+      display: inline-flex; align-items: center;
+      padding: 6px 16px; border-radius: 9999px;
+      background: #fef3c7; border: 1px solid #fde68a; color: #b45309;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .link-brand { color: #b45309; transition: color 0.2s; }
+    .link-brand:hover { color: #d97706; }
+    .toast { transition: all 0.3s ease; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+  </style>
+  {% block head %}{% endblock %}
+</head>
+<body class="bg-white text-slate-900 min-h-screen flex flex-col">
+
+  <!-- ═══ Navbar ═══ -->
+  <nav class="bg-white/95 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo + Gradient Bar + Brand -->
+        <a href="/" class="flex items-center space-x-3 hover:opacity-90 transition-opacity">
+          <img src="https://cdn.analogdata.ai/static/images/logo/ad_logo.png" alt="Analog Data Logo" class="h-8 w-auto object-contain">
+          <span class="block h-9 w-[4px] rounded-full bg-gradient-to-b from-amber-500 via-orange-400 to-amber-300 transform -skew-x-[15deg] shadow-[0_0_10px_rgba(251,146,60,0.6)]"></span>
+          <div class="leading-tight">
+            <div class="text-sm uppercase tracking-[0.2em] font-bold text-black/80">Analog Data</div>
+            <div class="text-lg font-bold text-black">Annotator</div>
+          </div>
+        </a>
+
+        <!-- Nav Links -->
+        <div class="flex items-center gap-1">
+          <a href="/"
+             class="relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300
+                    {% if active_page == 'home' %}text-amber-700 after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:rounded-full after:bg-gradient-to-r after:from-amber-500 after:via-orange-400 after:to-amber-300{% else %}text-slate-600 hover:text-slate-900 hover:bg-slate-50{% endif %}">
+            Home
+          </a>
+          <a href="/help"
+             class="relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300
+                    {% if active_page == 'help' %}text-amber-700 after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:rounded-full after:bg-gradient-to-r after:from-amber-500 after:via-orange-400 after:to-amber-300{% else %}text-slate-600 hover:text-slate-900 hover:bg-slate-50{% endif %}">
+            Usage / Help
+          </a>
+          <a href="https://analogdata.ai" target="_blank"
+             class="btn-brand ml-3 !px-6 !py-2 text-sm">
+            analogdata.ai <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ Main Content ═══ -->
+  <main class="flex-1">
+    {% block body %}{% endblock %}
+  </main>
+
+  <!-- ═══ Footer ═══ -->
+  <footer class="bg-brand-dark text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <!-- Brand Column -->
+        <div class="md:col-span-1">
+          <div class="flex items-center space-x-3 mb-4">
+            <img src="https://cdn.analogdata.ai/static/images/logo/ad_logo.png" alt="Analog Data Logo" class="h-7 w-auto object-contain brightness-0 invert">
+            <span class="block h-8 w-[3px] rounded-full bg-gradient-to-b from-amber-500 via-orange-400 to-amber-300 transform -skew-x-[15deg]"></span>
+            <div class="leading-tight">
+              <div class="text-xs uppercase tracking-[0.2em] font-bold text-white/80">Analog Data</div>
+              <div class="text-base font-bold text-white">Annotator</div>
+            </div>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed font-light">
+            Label images for custom YOLO training. 100% local, no cloud needed.
+          </p>
+        </div>
+
+        <!-- Tool Links -->
+        <div>
+          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Tool</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="/" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">Home</a></li>
+            <li><a href="/help" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">Usage / Help</a></li>
+          </ul>
+        </div>
+
+        <!-- Analog Data Links -->
+        <div>
+          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Analog Data</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="https://analogdata.ai" target="_blank" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">analogdata.ai</a></li>
+            <li><a href="https://analogdata.ai/projects" target="_blank" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">Projects</a></li>
+            <li><a href="https://analogdata.ai/workshops" target="_blank" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">Workshops</a></li>
+            <li><a href="https://analogdata.blog" target="_blank" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Resources</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="https://labs.analogdata.ai" target="_blank" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">Analog Data Labs</a></li>
+            <li><a href="https://analogdata.io" target="_blank" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">Analog Data IoT</a></li>
+            <li><a href="https://build.analogdata.io" target="_blank" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">Analog Data Build</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-500">&copy; 2026 Analog Data. All rights reserved.</p>
+        <div class="flex items-center gap-6 text-xs text-slate-500">
+          <a href="https://analogdata.ai/privacy" target="_blank" class="hover:text-amber-400 transition-colors duration-300">Privacy Policy</a>
+          <a href="https://analogdata.ai/termsofservice" target="_blank" class="hover:text-amber-400 transition-colors duration-300">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="toast fixed bottom-6 right-6 px-6 py-3 rounded-xl text-sm font-semibold shadow-lg shadow-amber-400/30 opacity-0 translate-y-2 pointer-events-none z-50" style="background:linear-gradient(to right,#f59e0b,#fb923c,#fcd34d);color:#000;border:1px solid #000;"></div>
+
+  <script>
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), 2500);
+    }
+    {% block scripts %}{% endblock %}
+  </script>
+</body>
+</html>

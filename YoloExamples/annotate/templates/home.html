@@ -1,0 +1,310 @@
+{% set active_page = "home" %}
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<!-- Hero Section -->
+<section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-amber-50/30">
+  <!-- Subtle grid overlay -->
+  <div class="absolute inset-0" style="background-image:linear-gradient(to right,rgba(15,23,42,0.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(15,23,42,0.04) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(circle at 50% 50%,rgba(0,0,0,0.8) 0%,transparent 70%);-webkit-mask-image:radial-gradient(circle at 50% 50%,rgba(0,0,0,0.8) 0%,transparent 70%);"></div>
+
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 py-20 sm:py-24 text-center">
+    <!-- Pill badge -->
+    <div class="pill-brand mb-6 mx-auto w-fit">
+      <span class="w-2 h-2 rounded-full bg-amber-500 mr-2"></span>
+      Local &middot; No Cloud &middot; YOLO Format
+    </div>
+
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4">
+      Image <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-400 to-amber-300">Annotation</span> Tool
+    </h1>
+    <p class="text-lg text-slate-600 leading-relaxed font-light max-w-lg mx-auto mb-10">
+      Draw bounding boxes, define classes, and export labels for custom YOLO model training &mdash; all in your browser.
+    </p>
+
+    <!-- Two Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto mb-10">
+      <!-- Select Folder -->
+      <button onclick="openModal('folder')"
+              class="group bg-white rounded-xl border border-slate-100 shadow-xl shadow-slate-900/10 p-8 text-center hover:border-amber-300 hover:shadow-amber-400/20 transition-all duration-300 cursor-pointer hover:scale-105">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-amber-100 flex items-center justify-center text-xl group-hover:bg-amber-200 transition-colors duration-300">
+          <i class="fa-solid fa-folder-open text-amber-600"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-slate-900 mb-1">Select Folder</h3>
+        <p class="text-sm text-slate-500 font-light">Browse your filesystem and pick a folder of images to annotate</p>
+      </button>
+
+      <!-- Upload Images -->
+      <button onclick="openModal('upload')"
+              class="group bg-white rounded-xl border border-slate-100 shadow-xl shadow-slate-900/10 p-8 text-center hover:border-amber-300 hover:shadow-amber-400/20 transition-all duration-300 cursor-pointer hover:scale-105">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-amber-100 flex items-center justify-center text-xl group-hover:bg-amber-200 transition-colors duration-300">
+          <i class="fa-solid fa-cloud-arrow-up text-amber-600"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-slate-900 mb-1">Upload Images</h3>
+        <p class="text-sm text-slate-500 font-light">Upload images from your computer to start a new annotation project</p>
+      </button>
+    </div>
+
+    <!-- Quick info -->
+    <p class="text-sm text-slate-400">
+      Need help? Check the <a href="/help" class="link-brand font-semibold">Usage / Help</a> page.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- Folder Browser Modal                                    -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="folder-modal" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+  <div class="bg-white rounded-xl shadow-xl shadow-slate-900/10 w-full max-w-xl max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+    <!-- Header -->
+    <div class="flex items-center justify-between px-6 pt-6 pb-4 border-b border-slate-100">
+      <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+        <i class="fa-solid fa-folder-open text-amber-500"></i> Select Image Folder
+      </h2>
+      <button onclick="closeModals()" class="text-slate-400 hover:text-slate-700 text-xl leading-none transition-colors" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="px-6 py-5 space-y-5">
+      <!-- Current path -->
+      <div>
+        <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Current Path</label>
+        <div id="browser-path" class="mt-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-600 font-mono truncate"></div>
+      </div>
+
+      <!-- Folder list -->
+      <div id="browser-list" class="border border-slate-200 rounded-xl max-h-56 overflow-y-auto divide-y divide-slate-100"></div>
+
+      <!-- Image found info -->
+      <div id="browser-info" class="hidden px-4 py-2.5 bg-amber-50 border border-amber-200 rounded-xl text-sm text-amber-700 font-medium"></div>
+
+      <!-- Manual path -->
+      <div>
+        <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Or paste full path</label>
+        <div class="flex gap-2 mt-1">
+          <input type="text" id="manual-path" placeholder="/home/user/dataset/train/images"
+                 class="flex-1 px-4 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-colors duration-200">
+          <button onclick="goToPath()" class="px-5 py-2.5 bg-white border border-slate-200 text-slate-700 rounded-xl text-sm font-semibold hover:border-amber-400 hover:text-slate-900 transition-all duration-300">Go</button>
+        </div>
+      </div>
+
+      <hr class="border-slate-100">
+
+      <!-- Classes -->
+      <div>
+        <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Classes <span class="normal-case font-normal text-slate-400">(you can also add later)</span></label>
+        <div id="folder-class-tags" class="flex flex-wrap gap-2 mt-2 min-h-[28px]"></div>
+        <div class="flex gap-2 mt-2">
+          <input type="text" id="folder-class-input" placeholder="e.g. helmet"
+                 onkeydown="if(event.key==='Enter'){event.preventDefault();addClassFolder();}"
+                 class="flex-1 px-4 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-colors duration-200">
+          <button onclick="addClassFolder()" class="btn-brand !px-5 !py-2.5 text-sm">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="px-6 pb-6">
+      <button id="folder-go-btn" onclick="startAnnotateFolder()" disabled
+              class="btn-brand w-full !py-3 text-sm disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none disabled:filter-none">
+        Start Annotating <i class="fa-solid fa-arrow-right ml-2"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- Upload Modal                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="upload-modal" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+  <div class="bg-white rounded-xl shadow-xl shadow-slate-900/10 w-full max-w-xl max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+    <!-- Header -->
+    <div class="flex items-center justify-between px-6 pt-6 pb-4 border-b border-slate-100">
+      <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+        <i class="fa-solid fa-cloud-arrow-up text-amber-500"></i> Upload Images
+      </h2>
+      <button onclick="closeModals()" class="text-slate-400 hover:text-slate-700 text-xl leading-none transition-colors" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="px-6 py-5 space-y-5">
+      <!-- Project name -->
+      <div>
+        <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Project Name</label>
+        <input type="text" id="upload-project" value="my_project" placeholder="helmet_detection"
+               class="mt-1 w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-colors duration-200">
+        <p class="text-xs text-slate-400 mt-1.5">A folder will be created with this name</p>
+      </div>
+
+      <!-- Drop zone -->
+      <div>
+        <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Images</label>
+        <div id="upload-area"
+             onclick="document.getElementById('upload-input').click()"
+             ondragover="event.preventDefault();this.classList.add('!border-amber-400','!bg-amber-50')"
+             ondragleave="this.classList.remove('!border-amber-400','!bg-amber-50')"
+             ondrop="event.preventDefault();this.classList.remove('!border-amber-400','!bg-amber-50');handleDrop(event)"
+             class="mt-1 border-2 border-dashed border-slate-300 rounded-xl p-8 text-center cursor-pointer hover:border-amber-400 hover:bg-amber-50/50 transition-all duration-300">
+          <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-amber-100 flex items-center justify-center">
+            <i class="fa-solid fa-images text-amber-600 text-lg"></i>
+          </div>
+          <p class="text-sm text-slate-600 font-medium">Click to select or drag &amp; drop</p>
+          <p class="text-xs text-slate-400 mt-1">JPG, PNG, BMP, WebP</p>
+          <input type="file" id="upload-input" multiple accept="image/*" onchange="handleFiles(this.files)" class="hidden">
+        </div>
+        <p id="upload-preview" class="text-sm text-amber-700 font-semibold mt-2"></p>
+      </div>
+
+      <!-- Classes -->
+      <div>
+        <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Classes</label>
+        <div id="upload-class-tags" class="flex flex-wrap gap-2 mt-2 min-h-[28px]"></div>
+        <div class="flex gap-2 mt-2">
+          <input type="text" id="upload-class-input" placeholder="e.g. helmet"
+                 onkeydown="if(event.key==='Enter'){event.preventDefault();addClassUpload();}"
+                 class="flex-1 px-4 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-colors duration-200">
+          <button onclick="addClassUpload()" class="btn-brand !px-5 !py-2.5 text-sm">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="px-6 pb-6">
+      <button id="upload-go-btn" onclick="startAnnotateUpload()" disabled
+              class="btn-brand w-full !py-3 text-sm disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none disabled:filter-none">
+        Upload &amp; Start Annotating <i class="fa-solid fa-arrow-right ml-2"></i>
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+const COLORS = ['#f59e0b','#ef4444','#3b82f6','#22c55e','#06b6d4','#a855f7','#f97316','#ec4899','#14b8a6','#8b5cf6'];
+let folderClasses = [];
+let uploadClasses = [];
+let selectedFiles = [];
+let selectedImagesDir = '';
+
+/* ── Modals ── */
+function openModal(type) {
+  closeModals();
+  if (type === 'folder') {
+    document.getElementById('folder-modal').classList.remove('hidden');
+    browseTo('{{ cwd }}');
+  } else {
+    document.getElementById('upload-modal').classList.remove('hidden');
+  }
+}
+function closeModals() {
+  document.getElementById('folder-modal').classList.add('hidden');
+  document.getElementById('upload-modal').classList.add('hidden');
+}
+document.getElementById('folder-modal').addEventListener('click', e => { if (e.target.id === 'folder-modal') closeModals(); });
+document.getElementById('upload-modal').addEventListener('click', e => { if (e.target.id === 'upload-modal') closeModals(); });
+
+/* ── Folder Browser ── */
+async function browseTo(path) {
+  const resp = await fetch('/api/browse?path=' + encodeURIComponent(path));
+  const data = await resp.json();
+  selectedImagesDir = data.current;
+  document.getElementById('browser-path').textContent = data.current;
+  document.getElementById('manual-path').value = data.current;
+
+  const list = document.getElementById('browser-list');
+  let html = '';
+  if (data.parent !== data.current) {
+    html += `<div class="flex items-center gap-3 px-4 py-2.5 cursor-pointer hover:bg-slate-50 text-sm transition-colors" onclick="browseTo('${data.parent.replace(/'/g,"\\'")}')">
+      <i class="fa-solid fa-arrow-up text-amber-500 text-xs"></i><span class="text-slate-600">..</span></div>`;
+  }
+  data.entries.forEach(e => {
+    html += `<div class="flex items-center gap-3 px-4 py-2.5 cursor-pointer hover:bg-slate-50 text-sm transition-colors" onclick="browseTo('${e.path.replace(/'/g,"\\'")}')">
+      <i class="fa-solid fa-folder text-amber-400 text-xs"></i><span class="text-slate-700">${e.name}</span></div>`;
+  });
+  if (!data.entries.length && data.parent === data.current) {
+    html = '<div class="px-4 py-3 text-sm text-slate-400 text-center">No subfolders</div>';
+  }
+  list.innerHTML = html;
+
+  const info = document.getElementById('browser-info');
+  const goBtn = document.getElementById('folder-go-btn');
+  if (data.has_images) {
+    info.classList.remove('hidden');
+    info.innerHTML = '<i class="fa-solid fa-check mr-1.5"></i> Found <strong>' + data.image_count + '</strong> images in this folder';
+    goBtn.disabled = false;
+  } else {
+    info.classList.add('hidden');
+    goBtn.disabled = true;
+  }
+
+  const clsResp = await fetch('/api/classes?dir=' + encodeURIComponent(data.current));
+  const clsData = await clsResp.json();
+  if (clsData.classes && clsData.classes.length > 0) folderClasses = clsData.classes;
+  renderClassTags('folder');
+}
+
+function goToPath() {
+  const p = document.getElementById('manual-path').value.trim();
+  if (p) browseTo(p);
+}
+
+async function saveClassesAndGo(dir, classes) {
+  if (classes.length > 0) {
+    await fetch('/api/classes?dir=' + encodeURIComponent(dir), {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ classes }),
+    });
+  }
+  window.location.href = '/annotate?dir=' + encodeURIComponent(dir);
+}
+
+function startAnnotateFolder() {
+  if (!selectedImagesDir) return;
+  saveClassesAndGo(selectedImagesDir, folderClasses);
+}
+
+/* ── Upload ── */
+function handleFiles(files) { selectedFiles = Array.from(files); updateUploadPreview(); }
+function handleDrop(e) { selectedFiles = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/')); updateUploadPreview(); }
+function updateUploadPreview() {
+  document.getElementById('upload-preview').textContent = selectedFiles.length ? selectedFiles.length + ' image(s) selected' : '';
+  document.getElementById('upload-go-btn').disabled = !selectedFiles.length;
+}
+
+async function startAnnotateUpload() {
+  if (!selectedFiles.length) return;
+  const project = document.getElementById('upload-project').value.trim() || 'my_project';
+  const fd = new FormData();
+  fd.append('project', project);
+  selectedFiles.forEach(f => fd.append('files', f));
+  const resp = await fetch('/api/upload', { method: 'POST', body: fd });
+  const data = await resp.json();
+  if (data.ok) saveClassesAndGo(data.dir, uploadClasses);
+}
+
+/* ── Class Tags ── */
+function addClassFolder() {
+  const inp = document.getElementById('folder-class-input');
+  const v = inp.value.trim();
+  if (v && !folderClasses.includes(v)) folderClasses.push(v);
+  inp.value = ''; renderClassTags('folder');
+}
+function addClassUpload() {
+  const inp = document.getElementById('upload-class-input');
+  const v = inp.value.trim();
+  if (v && !uploadClasses.includes(v)) uploadClasses.push(v);
+  inp.value = ''; renderClassTags('upload');
+}
+
+function renderClassTags(type) {
+  const classes = type === 'folder' ? folderClasses : uploadClasses;
+  const el = document.getElementById(type + '-class-tags');
+  el.innerHTML = classes.map((c, i) => {
+    const color = COLORS[i % COLORS.length];
+    return `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border border-slate-200 bg-slate-50 text-slate-700">
+      <span class="w-2 h-2 rounded-full" style="background:${color}"></span>${c}
+      <button onclick="event.stopPropagation();${type==='folder'?'folderClasses':'uploadClasses'}.splice(${i},1);renderClassTags('${type}')"
+              class="ml-0.5 text-slate-400 hover:text-red-500 leading-none transition-colors"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+    </span>`;
+  }).join('');
+}
+{% endblock %}

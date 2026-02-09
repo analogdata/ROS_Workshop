@@ -45,6 +45,16 @@ ROS_Workshop/
 │           ├── udp_sender_node.py       # Node 2: sends UDP to ESP8266
 │           └── status_display_node.py   # Node 3: displays LED status
 │
+├── YoloExamples/                        # YOLO object detection examples
+│   ├── object_detection.py            # Real-time webcam object detection
+│   ├── annotate/                      # Web-based annotation tool (Flask)
+│   │   ├── app.py                   # Flask backend + API routes
+│   │   └── templates/               # Jinja2 + TailwindCSS pages
+│   ├── annotate_images.py             # CLI annotation tool (OpenCV)
+│   ├── train_custom_model.py          # Custom YOLO training pipeline
+│   ├── yolo_training_workflow.ipynb   # Jupyter notebook: full training guide
+│   └── yolov8n.pt                     # [AUTO-DOWNLOAD] YOLOv8 Nano model
+│
 ├── docs/                                # Step-by-step documentation
 │   ├── 00_installation_and_get_started.md  # Installation guide (Git, ROS2, Arduino, etc.)
 │   ├── 01_what_is_udp.md               # UDP explained simply
@@ -53,6 +63,9 @@ ROS_Workshop/
 │   ├── 04_build_and_run.md             # Full build & run instructions
 │   ├── 05_how_each_program_works.md    # Deep dive into each program
 │   ├── 06_keyboard_led_control.md      # 3-node keyboard system guide
+│   ├── 07_yolo_ultralytics.md          # YOLO & Ultralytics deep dive
+│   ├── 08_annotating_and_training.md   # Annotation, training & public datasets
+│   ├── Annotator Tool/                 # Annotator tool screenshots
 │   └── Whatsapp QR for Group/          # WhatsApp group QR code image
 │
 ├── pyproject.toml                       # Python dependencies (managed by uv)
@@ -91,6 +104,13 @@ wget -O p7/shape_predictor_68_face_landmarks.dat.bz2 \
 bunzip2 p7/shape_predictor_68_face_landmarks.dat.bz2
 ```
 
+**YOLOv8 Nano** (~6 MB) — needed by `YoloExamples/object_detection.py`:
+```bash
+cd YoloExamples
+uv run python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')"
+```
+> The model auto-downloads on first run too, but this pre-downloads it.
+
 ### 4. Run a Program
 
 ```bash
@@ -105,6 +125,9 @@ uv run python p7/finger_udp.py
 
 # Drowsiness detection (eyes closed = ON)
 uv run python p7/drowsiness_udp.py
+
+# YOLO real-time object detection (press q to quit, s to screenshot)
+uv run python YoloExamples/object_detection.py
 ```
 
 ### 5. Run the ROS2 Single-Node Bridge
@@ -163,6 +186,38 @@ ros2 run keyboard_node udp_sender_node --ros-args -p esp_ip:="192.168.1.50"
 | `keyboard_input_node.py` | ROS2 | Read keystrokes (a/b/q), publish commands |
 | `udp_sender_node.py` (keyboard_node) | ROS2 | Forward commands via UDP, publish status |
 | `status_display_node.py` | ROS2 | Display LED status updates in terminal |
+| `YoloExamples/object_detection.py` | AI (YOLO) | Real-time object detection with webcam |
+| `YoloExamples/annotate/app.py` | Tool (Flask) | Web-based image annotation (like Roboflow) |
+| `YoloExamples/annotate_images.py` | Tool (CLI) | Command-line image annotation (OpenCV) |
+| `YoloExamples/train_custom_model.py` | AI (YOLO) | Train/predict/export custom YOLO models |
+| `YoloExamples/yolo_training_workflow.ipynb` | Notebook | Interactive Jupyter training guide |
+
+---
+
+## Annotator Tool (Web-Based Image Labeling)
+
+Our browser-based annotation tool for labeling images in YOLO format — 100% local, no cloud needed.
+
+```bash
+uv run python YoloExamples/annotate/app.py
+# Opens at http://localhost:5000
+```
+
+**Home Page** — Select a folder of images or upload new ones:
+
+![Annotator Home Page](docs/Annotator%20Tool/1.png)
+
+**Folder Browser** — Navigate to your images, define classes, and start annotating:
+
+![Annotator Folder Browser](docs/Annotator%20Tool/2.png)
+
+**Annotation Page** — Draw bounding boxes, manage classes, track progress, save & export:
+
+![Annotator Annotation Page](docs/Annotator%20Tool/3.png)
+
+Supports **multi-class labeling** — draw boxes with different classes on the same image.
+Each box becomes a line in the YOLO `.txt` label file. See the
+[Annotating & Training docs](docs/08_annotating_and_training.md) for full details.
 
 ---
 
@@ -185,6 +240,10 @@ Python packages managed via `pyproject.toml` with [uv](https://docs.astral.sh/uv
 - **mediapipe** — Google's hand landmark detection
 - **dlib** — Face landmark detection (68-point model)
 - **scipy** — Distance calculations for EAR (Eye Aspect Ratio)
+- **ultralytics** — YOLOv8 object detection
+- **flask** — Web-based annotation tool
+- **jupyterlab** — Jupyter notebooks for interactive training
+- **matplotlib** — Plotting training results
 - **requests** — HTTP library
 
 ---
@@ -200,6 +259,8 @@ See the `docs/` folder for beginner-friendly explanations:
 4. **[Build & Run](docs/04_build_and_run.md)** — Step-by-step instructions + troubleshooting
 5. **[How Each Program Works](docs/05_how_each_program_works.md)** — Deep dive with flowcharts
 6. **[Keyboard LED Control](docs/06_keyboard_led_control.md)** — 3-node ROS2 system guide
+7. **[YOLO & Ultralytics](docs/07_yolo_ultralytics.md)** — Object detection deep dive, project ideas, embedded + image processing
+8. **[Annotating & Training](docs/08_annotating_and_training.md)** — Public datasets, local annotation, training pipeline, complete walkthroughs
 
 ---
 

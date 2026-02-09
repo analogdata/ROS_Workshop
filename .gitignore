@@ -17,6 +17,14 @@ wheels/
 *.pt
 *.pth
 
+# YOLO training runs and datasets
+runs/
+**/my_dataset/
+**/_uploads/
+
+# Jupyter
+.ipynb_checkpoints/
+
 # IDE
 .vscode/
 .idea/
